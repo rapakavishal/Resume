@@ -265,8 +265,8 @@
         mode: 'cors',
     })
     .then(response => {
-        console.log(response);
-        console.log(response.json);
+        //console.log(response);
+        //console.log(response.json);
         if (!response.ok) {                      // *** Check errors
           throw new Error(                     // ***
               "HTTP status " + response.status // ***
@@ -275,7 +275,7 @@
         return response.json();
     })
     .then(res => {
-        console.log(res);
+        //console.log(res);
         var count = res;
         document.getElementById('viewcounter').setAttribute('data-purecounter-end',count);
         document.getElementById('viewcounter').innerText = count;
@@ -284,36 +284,5 @@
       console.error(error);
     });
     return count;
-  }
-
-  let forms = document.querySelectorAll('.php-email-form');
-
-  forms.forEach( function(e) {
-    e.addEventListener('submit', function(event) {
-      event.preventDefault();
-      let thisForm = this;
-      let action = thisForm.getAttribute('action');
-      let recaptcha = thisForm.getAttribute('data-recaptcha-site-key');
-      
-      if( ! action ) {
-        displayError(thisForm, 'The form action property is not set!')
-        return;
-      }
-      thisForm.querySelector('.loading').classList.add('d-block');
-      thisForm.querySelector('.error-message').classList.remove('d-block');
-      thisForm.querySelector('.sent-message').classList.remove('d-block');
-
-      let formData = new FormData( thisForm );
-      thisForm.querySelector('.sent-message').classList.add('d-block');
-      thisForm.querySelector('.loading').classList.add('d-block');
-      thisForm.reset(); 
-      thisForm.querySelector('.loading').classList.remove('d-block');
-    });
-  });
-
-  function displayError(thisForm, error) {
-    thisForm.querySelector('.loading').classList.remove('d-block');
-    thisForm.querySelector('.error-message').innerHTML = error;
-    thisForm.querySelector('.error-message').classList.add('d-block');
   }
 })()
